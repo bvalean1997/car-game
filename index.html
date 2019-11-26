@@ -1,5 +1,46 @@
 <html>
     <head>
         <title>Car Game</title>
+        <style>
+        img {
+            width: 100px;
+            position: absolute;
+            top: 50vh;
+            left: 50vw;
+            transition: margin-left 0.3s linear, margin-top 0.3s linear;
+        }
+        </style>
     </head>
+    <body>
+        <img id="car" src="data:image/png;base64,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" /> 
+
+        <script>
+            var x = 0;
+            var y = 0;
+
+            var car = document.getElementById("car");
+
+            document.addEventListener("keydown", function(event) {
+                if (event.code === "ArrowUp") {
+                    y = y - 100;
+                }
+
+                if (event.code === "ArrowDown") {
+                    y = y + 100;
+                }
+
+                if (event.code === "ArrowLeft") {
+                    x = x - 100;
+                }
+
+                if (event.code === "ArrowRight") {
+                    x = x + 100;
+                }
+
+               console.log(x, y);
+               car.style.marginLeft = x + "px";
+               car.style.marginTop = y + "px"; 
+            });
+        </script>
+    </body>
 </html>
